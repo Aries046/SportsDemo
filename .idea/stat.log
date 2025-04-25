@@ -76,3 +76,13 @@
 {"ts":1745584510253,"action":"IDE_ACTIVATED"}
 {"ts":1745584513052,"action":"IDE_DEACTIVATED"}
 {"ts":1745584516369,"action":"IDE_ACTIVATED"}
+{"ts":1745584518479,"action":"IDE_DEACTIVATED"}
+{"ts":1745584520480,"action":"IDE_ACTIVATED"}
+{"ts":1745584528979,"action":"FILE_CLOSED","file":"/app/src/main/java/com/example/sports/MainActivity.java","tags":{"FILE_LINE_OF_CODE":"62"}}
+{"ts":1745584532168,"action":"IDE_DEACTIVATED"}
+{"ts":1745584536139,"action":"IDE_ACTIVATED"}
+{"ts":1745584538187,"action":"IDE_DEACTIVATED"}
+{"ts":1745584541635,"action":"IDE_ACTIVATED"}
+{"ts":1745584543446,"action":"IDE_DEACTIVATED"}
+{"ts":1745584550477,"action":"IDE_ACTIVATED"}
+{"ts":1745584561745,"action":"FILE_OPENED","file":"/app/src/main/java/com/example/sports/MainActivity.java","tags":{"FILE_LINE_OF_CODE":"62"}}
