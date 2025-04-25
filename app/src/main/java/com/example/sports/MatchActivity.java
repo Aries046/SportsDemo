@@ -52,6 +52,8 @@ public class MatchActivity extends AppCompatActivity {
     private ActionRecordAdapter actionRecordAdapter;
     private Handler timerHandler;
     private Runnable timerRunnable;
+    private Handler infoUpdateHandler;
+    private Runnable infoUpdateRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,9 @@ public class MatchActivity extends AppCompatActivity {
 
         // 设置计时器
         setupTimer();
+
+        // 设置信息更新定时器
+        setupInfoUpdateTimer();
     }
 
     private void initViews() {
@@ -210,6 +215,7 @@ public class MatchActivity extends AppCompatActivity {
             currentMatch.recordAction(selectedPlayer, action);
             actionRecordAdapter.notifyDataSetChanged();
             updateScore();
+            updateMatchInfo(); // 立即更新比赛信息
 
             // 滚动到最后一条记录
             if (currentMatch.getActionRecords().size() > 0) {
@@ -274,15 +280,35 @@ public class MatchActivity extends AppCompatActivity {
         timerHandler.postDelayed(timerRunnable, 0);
     }
 
+    private void setupInfoUpdateTimer() {
+        infoUpdateHandler = new Handler();
+        infoUpdateRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // 更新比赛信息和比分
+                updateMatchInfo();
+                updateScore();
+
+                // 如果比赛已结束，停止更新
+                if (!currentMatch.isFinished()) {
+                    infoUpdateHandler.postDelayed(this, 1000);
+                }
+            }
+        };
+        infoUpdateHandler.postDelayed(infoUpdateRunnable, 1000);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
         timerHandler.removeCallbacks(timerRunnable);
+        infoUpdateHandler.removeCallbacks(infoUpdateRunnable);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         timerHandler.postDelayed(timerRunnable, 0);
+        infoUpdateHandler.postDelayed(infoUpdateRunnable, 0);
     }
 }
