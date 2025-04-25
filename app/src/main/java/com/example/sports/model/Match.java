@@ -53,6 +53,21 @@ public class Match {
         return actionRecords;
     }
 
+    // 获取每局比赛结果
+    public List<SetResult> getSetResults() {
+        return setResults;
+    }
+
+    // 设置最大局数
+    public void setMaxSets(int maxSets) {
+        this.maxSets = maxSets;
+    }
+
+    // 获取最大局数
+    public int getMaxSets() {
+        return maxSets;
+    }
+
     public void start() {
         if (team1.getPlayers().size() < 2 || team2.getPlayers().size() < 2) {
             throw new IllegalStateException("每支队伍至少需要两名球员才能开始比赛");
@@ -180,6 +195,30 @@ public class Match {
             return 0;
         }
         return System.currentTimeMillis() - startTime;
+    }
+
+    // 获取比赛获胜者队伍
+    public Team getWinner() {
+        if (!isFinished) {
+            return null;
+        }
+
+        int team1Sets = 0;
+        int team2Sets = 0;
+
+        for (SetResult result : setResults) {
+            if (result.getTeam1Score() > result.getTeam2Score()) {
+                team1Sets++;
+            } else {
+                team2Sets++;
+            }
+        }
+
+        if (team1Sets > team2Sets) {
+            return team1;
+        } else {
+            return team2;
+        }
     }
 
     // 内部类，表示每局比赛的结果

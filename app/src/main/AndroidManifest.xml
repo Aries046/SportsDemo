@@ -28,6 +28,12 @@
             android:name=".MatchActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".MatchHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MatchDetailActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

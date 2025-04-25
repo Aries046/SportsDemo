@@ -53,9 +53,8 @@ public class MainActivity extends AppCompatActivity {
         viewMatchesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 实现查看比赛记录功能
-                // Intent intent = new Intent(MainActivity.this, MatchHistoryActivity.class);
-                // startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, MatchHistoryActivity.class);
+                startActivity(intent);
             }
         });
     }
